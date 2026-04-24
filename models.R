@@ -49,7 +49,8 @@ glm(Churn ~ . +
     StreamingMovies:PaymentMethod +
     Contract:PaperlessBilling +
     Contract:PaymentMethod +
-    PaperlessBilling:PaymentMethod,
+    PaperlessBilling:PaymentMethod +
+    tenure*MonthlyCharges*TotalCharges,
   data = train,
   family = binomial()
 ) |>
