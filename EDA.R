@@ -7,6 +7,9 @@ library(ggplot2)
 train <- read.csv("train.csv") |>
   within({
     gender <- as.factor(gender)
+    SeniorCitizen <- (SeniorCitizen == 1) |>
+      ifelse("Yes", "No") |>
+      as.factor()
     Partner <- as.factor(Partner)
     Dependents <- as.factor(Dependents)
     PhoneService <- as.factor(PhoneService)
@@ -84,6 +87,7 @@ train |>
 # Basic counts
 cats <- c(
   "gender",
+  "SeniorCitizen",
   "Partner",
   "Dependents",
   "PhoneService",
@@ -177,6 +181,9 @@ for (i in seq_along(combs[1, ])) {
 # - gender x InternetService 
 # - gender x Contract 
 # - gender x PaymentMethod 
+# - SeniorCitizen x InternetService 
+# - SeniorCitizen x Contract 
+# - SeniorCitizen x PaymentMethod 
 # - Partner x InternetService 
 # - Partner x Contract 
 # - Partner x PaymentMethod 
