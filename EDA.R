@@ -108,7 +108,7 @@ for (i in seq_along(combs[1, ])) {
   (ggplot(data) +
     geom_line(aes(x = X, y = Ratio, group = M, color = M)) +
     labs(x = combs[1, i], y = "Churn", color = combs[2, i])) |>
-    ggsave(name, plot = _, path = "graphs") |>
+    ggsave(name, plot = _, path = "graphs/categorical-categorical") |>
     suppressMessages()
   paste(combs[1, i], "x", combs[2, i], ": ") |> cat()
   l <- c()
