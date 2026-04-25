@@ -158,3 +158,99 @@ for (i in seq_along(combs[1, ])) {
 # - Contract x PaperlessBilling 
 # - Contract x PaymentMethod 
 # - PaperlessBilling x PaymentMethod 
+
+
+########################
+# Continuous Variables #
+########################
+
+# Continuous-continuous:
+# These graphs aren't the best, but essentially an interaction will look show a
+# different distribution between colors in either response type. In more simple
+# words, if either the top or bottom portion has a clear difference between the
+# three colors, there is an interaction.
+conts <- c("tenure", "MonthlyCharges", "TotalCharges")
+combs <- combn(conts, 2)
+for (i in seq_along(combs[1, ])) {
+  name <- paste0(combs[1, i], "x", combs[2, i], ".png")
+  (train |>
+    (\(df) {
+       q <- quantile(df[[combs[2, i]]], probs = c(1/3, 2/3))
+       x <- rep(0, nrow(df))
+       x[df[[combs[2, i]]] <= q[[1]]] <- 1
+       x[df[[combs[2, i]]] > q[[2]]] <- 3
+       x[x == 0] <- 2
+       within(train, Mod <- as.factor(x))
+    })() |>
+    ggplot() +
+      geom_violin(
+        aes_string(y = "Churn", x = combs[1, i], fill = "Mod"),
+        position = "nudge",
+        alpha = 0.7
+      ) +
+      labs(fill = combs[2, i])) |>
+    ggsave(name, plot = _, path = "graphs/continuous-continuous") |>
+    suppressMessages()
+}
+# All seem to have significant interactions:
+# - tenure x MonthlyCharges
+# - tenure x TotalCharges
+# - MonthlyCharges x TotalCharges
+
+# Continuous-categorical:
+# Basically the same graphs as the previous section, but the moderating
+# variable is always a categorical variable and not a quantile of a continuous
+# variable.
+combs <- rbind(
+  rep(conts, length(cats)),
+  rep(cats, length(conts))
+)
+for (i in seq_along(combs[1, ])) {
+  name <- paste0(combs[1, i], "x", combs[2, i], ".png")
+  (train |>
+    ggplot() +
+      geom_violin(
+        aes_string(y = "Churn", x = combs[1, i], fill = combs[2, i]),
+        position = "nudge",
+        alpha = 0.7
+      )) |>
+    ggsave(name, plot = _, path = "graphs/continuous-categorical") |>
+    suppressMessages()
+}
+# Added the following interactions:
+# - MonthlyCharges x Contract
+# - MonthlyCharges x DeviceProtection
+# - MonthlyCharges x InternetService
+# - MonthlyCharges x MultipleLines
+# - MonthlyCharges x OnlineBackup
+# - MonthlyCharges x OnlineSecurity
+# - MonthlyCharges x PaperlessBilling
+# - MonthlyCharges x PaymentMethod
+# - MonthlyCharges x PhoneService
+# - MonthlyCharges x SeniorCitizen
+# - MonthlyCharges x StreamingMovies
+# - MonthlyCharges x StreamingTV
+# - MonthlyCharges x TechSupport
+# - TotalCharges x Contract
+# - TotalCharges x DeviceProtection
+# - TotalCharges x InternetService
+# - TotalCharges x MultipleLines
+# - TotalCharges x OnlineBackup
+# - TotalCharges x OnlineSecurity
+# - TotalCharges x OnlineSecurity
+# - TotalCharges x Partner
+# - TotalCharges x PaymentMethod
+# - TotalCharges x PhoneService
+# - TotalCharges x StreamingMovies
+# - TotalCharges x StreamingTV
+# - TotalCharges x TechSupport
+# - tenure x Contract
+# - tenure x DeviceProtection
+# - tenure x MultipleLines
+# - tenure x OnlineBackup
+# - tenure x OnlineSecurity
+# - tenure x Partner
+# - tenure x PaymentMethod
+# - tenure x StreamingMovies
+# - tenure x StreamingTV
+# - tenure x TechSupport

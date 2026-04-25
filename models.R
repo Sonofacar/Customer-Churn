@@ -50,6 +50,42 @@ glm(Churn ~ . +
     Contract:PaperlessBilling +
     Contract:PaymentMethod +
     PaperlessBilling:PaymentMethod +
+    MonthlyCharges:Contract +
+    MonthlyCharges:DeviceProtection +
+    MonthlyCharges:InternetService +
+    MonthlyCharges:MultipleLines +
+    MonthlyCharges:OnlineBackup +
+    MonthlyCharges:OnlineSecurity +
+    MonthlyCharges:PaperlessBilling +
+    MonthlyCharges:PaymentMethod +
+    MonthlyCharges:PhoneService +
+    MonthlyCharges:SeniorCitizen +
+    MonthlyCharges:StreamingMovies +
+    MonthlyCharges:StreamingTV +
+    MonthlyCharges:TechSupport +
+    TotalCharges:Contract +
+    TotalCharges:DeviceProtection +
+    TotalCharges:InternetService +
+    TotalCharges:MultipleLines +
+    TotalCharges:OnlineBackup +
+    TotalCharges:OnlineSecurity +
+    TotalCharges:OnlineSecurity +
+    TotalCharges:Partner +
+    TotalCharges:PaymentMethod +
+    TotalCharges:PhoneService +
+    TotalCharges:StreamingMovies +
+    TotalCharges:StreamingTV +
+    TotalCharges:TechSupport +
+    tenure:Contract +
+    tenure:DeviceProtection +
+    tenure:MultipleLines +
+    tenure:OnlineBackup +
+    tenure:OnlineSecurity +
+    tenure:Partner +
+    tenure:PaymentMethod +
+    tenure:StreamingMovies +
+    tenure:StreamingTV +
+    tenure:TechSupport +
     tenure*MonthlyCharges*TotalCharges,
   data = train,
   family = binomial()
