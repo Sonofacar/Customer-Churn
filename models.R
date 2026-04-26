@@ -91,11 +91,6 @@ glm(Churn ~ . +
   family = binomial()
 ) |>
   predict(newdata = test, type = "resp") |>
-  (\(.) {
-     x <- rep(0, length(.))
-     x[. >= 0.4] <- 1
-     x
-  })() |>
   attach_predictions() |>
   write.csv("logistic_regression.csv", quote = FALSE, row.names = FALSE)
 
@@ -104,7 +99,7 @@ glm(Churn ~ . +
 # Random Forest #
 #################
 
-randomForest(Churn ~ ., data = train, maxnodes = 40) |>
+randomForest(Churn ~ ., data = train) |>
   predict(newdata = test) |>
   (\(.) {
      x <- rep(0, length(.))
