@@ -15,31 +15,21 @@ attach_predictions <- function(x) {
 #######################
 
 glm(Churn ~ . +
-    gender:InternetService +
-    gender:Contract +
-    gender:PaymentMethod +
     SeniorCitizen:InternetService +
     SeniorCitizen:Contract +
     SeniorCitizen:PaymentMethod +
     Partner:InternetService +
-    Partner:Contract +
     Partner:PaymentMethod +
     Dependents:InternetService +
     Dependents:Contract +
-    Dependents:PaymentMethod +
     PhoneService:Contract +
     PhoneService:PaymentMethod +
     MultipleLines:InternetService +
     MultipleLines:Contract +
-    MultipleLines:PaymentMethod +
     InternetService:Contract +
-    InternetService:PaperlessBilling +
     InternetService:PaymentMethod +
     OnlineSecurity:Contract +
     OnlineSecurity:PaymentMethod +
-    OnlineBackup:Contract +
-    OnlineBackup:PaymentMethod +
-    DeviceProtection:Contract +
     DeviceProtection:PaymentMethod +
     TechSupport:Contract +
     TechSupport:PaymentMethod +
@@ -47,23 +37,15 @@ glm(Churn ~ . +
     StreamingTV:PaymentMethod +
     StreamingMovies:Contract +
     StreamingMovies:PaymentMethod +
-    Contract:PaperlessBilling +
     Contract:PaymentMethod +
-    PaperlessBilling:PaymentMethod +
     MonthlyCharges:Contract +
-    MonthlyCharges:DeviceProtection +
     MonthlyCharges:InternetService +
     MonthlyCharges:MultipleLines +
-    MonthlyCharges:OnlineBackup +
-    MonthlyCharges:OnlineSecurity +
     MonthlyCharges:PaperlessBilling +
     MonthlyCharges:PaymentMethod +
-    MonthlyCharges:PhoneService +
     MonthlyCharges:SeniorCitizen +
     MonthlyCharges:StreamingMovies +
     MonthlyCharges:StreamingTV +
-    MonthlyCharges:TechSupport +
-    TotalCharges:Contract +
     TotalCharges:DeviceProtection +
     TotalCharges:InternetService +
     TotalCharges:MultipleLines +
@@ -72,7 +54,6 @@ glm(Churn ~ . +
     TotalCharges:OnlineSecurity +
     TotalCharges:Partner +
     TotalCharges:PaymentMethod +
-    TotalCharges:PhoneService +
     TotalCharges:StreamingMovies +
     TotalCharges:StreamingTV +
     TotalCharges:TechSupport +
@@ -82,7 +63,6 @@ glm(Churn ~ . +
     tenure:OnlineBackup +
     tenure:OnlineSecurity +
     tenure:Partner +
-    tenure:PaymentMethod +
     tenure:StreamingMovies +
     tenure:StreamingTV +
     tenure:TechSupport +
